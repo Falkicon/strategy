@@ -1,0 +1,15 @@
+package-as: Strategy
+enable-nolib-creation: no
+
+ignore:
+  - .git
+  - .github
+  - .gitignore
+  - .luacheckrc
+  - .markdownlint.json
+  - .vscode
+  - AGENTS.md
+  - CHANGELOG.md
+  - spec.md
+  - Tests
+  - PLATER_CONFLICT_RESOLUTION.md
