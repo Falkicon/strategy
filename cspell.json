@@ -1,0 +1,50 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Dragonflight",
+    "lockdown",
+    "framestack",
+    "reloadui",
+    "mouseovers",
+    "borderless",
+    "clickedframe",
+    "Wowpedia",
+    "pcall",
+    "luacheck",
+    "upvalue",
+    "upvalues",
+    "cffff",
+    "REGEN",
+    "strategy",
+    "fenf",
+    "Falk",
+    "Sikran",
+    "Kingymiron",
+    "Quadrata",
+    "Skurri",
+    "Bliz",
+    "Upvalue",
+    "Lockdown",
+    "Al'dani",
+    "Tazavesh",
+    "Dawnbreaker",
+    "cooldowns",
+    "cooldown",
+    "Shreddinator",
+    "sawblades",
+    "Mechadrone",
+    "Trickshot"
+  ],
+  "ignorePaths": ["Libs/**", "**/Libs/**", "**/*.toc"],
+  "languageSettings": [
+    {
+      "languageId": "lua",
+      "caseSensitive": false
+    },
+    {
+      "languageId": "markdown",
+      "caseSensitive": false
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+## Interface: 110200, 110205
+## Title: Strategy
+## Author: Jason Falk
+## Notes: Tank strategy assistant - click buttons or use keybinds to announce encounter strategies (Midnight-compatible)
+## Version: 2.0.0
+## SavedVariables: StrategyDB
+## OptionalDeps: Plater
+## LoadOnDemand: 0
+## X-Conflict-Check: 1
+
+embeds.xml
+Core\StrategyEngine.lua
+Core\DatabaseManager.lua
+Core\DefaultsManager.lua
+Core\InstanceDetector.lua
+Core\StrategyPanel.lua
+Core\KeybindManager.lua
+Core\Core.lua
+Database\TWW\Dungeon\operation-floodgate-v2.lua
+Database\TWW\Dungeon\ara-kara.lua
+Database\TWW\Dungeon\dawnbreaker.lua
+Database\TWW\Dungeon\echo-dome.lua
+Database\TWW\Dungeon\gambit.lua
+Database\TWW\Dungeon\halls-of-atonement.lua
+Database\TWW\Dungeon\priory.lua
+Database\TWW\Dungeon\streets-of-wonder.lua
+
+# Midnight Content
+Database\Midnight\Dungeon\winderunner-spire.lua
+Database\Midnight\Dungeon\magisters-terrace.lua
+Database\Midnight\Dungeon\murder-row.lua
+Database\Midnight\Dungeon\den-of-nalorakk.lua
+Database\Midnight\Dungeon\maisara-caverns.lua
+Database\Midnight\Dungeon\the-blinding-vale.lua
+Database\Midnight\Dungeon\voidscar-arena.lua
+Database\Midnight\Dungeon\nexus-point-xenas.lua
+Database\Midnight\Raid\the-voidspire.lua
+Database\Midnight\Raid\the-dreamrift.lua
+Database\Midnight\Raid\march-on-queldanas.lua
+
