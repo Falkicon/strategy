@@ -2,7 +2,7 @@
 
 This directory contains modular encounter data for the Strategy addon. Each file represents a single instance (dungeon/raid) with all its strategic areas organized in progression order.
 
-> **Strategy 2.0 Note**: The database format has changed from mob-based to area-based organization. Strategies are now keyed by strategic areas (boss fights, big pulls, key mechanics) rather than individual mob names. This enables button-based announcements without requiring `UnitName()` detection.
+The database uses an area-based organization. Strategies are keyed by strategic areas (boss fights, big pulls, key mechanics) rather than individual mob names. This enables button-based announcements.
 
 ## Directory Structure
 
@@ -97,15 +97,7 @@ return {
 }
 ```
 
-## Key Differences from v1.x Format
 
-| Aspect            | v1.x (Mob-Based)                 | v2.0 (Area-Based)                    |
-| ----------------- | -------------------------------- | ------------------------------------ |
-| **Key**           | Exact mob name from `UnitName()` | Unique `id` string (your choice)     |
-| **Detection**     | Auto-detect via target/mouseover | Player clicks button or keybind      |
-| **Ordering**      | Alphabetical by mob name         | Explicit order in `strategies` array |
-| **Grouping**      | Implicit by `mobType`            | Explicit `group` field               |
-| **Zone matching** | `zones = {}` per encounter       | Single `instanceID` for whole file   |
 
 ## Data Quality Standards
 

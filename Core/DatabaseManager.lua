@@ -1,18 +1,12 @@
 --[[
 StrategyDatabaseManager.lua
-Database management module for Strategy addon (v2.0 Midnight-compatible)
+Database management module for Strategy addon
 
 Responsibilities:
 - Instance data loading/unloading
-- Strategy lookup by ID or index (v2.0)
+- Strategy lookup by ID or index
 - Zone change handling
 - Database access methods
-- Backward compatibility with v1.x encounters format
-
-v2.0 Changes:
-- Removed CheckAndOutputBoss (no longer using UnitName for detection)
-- Added GetStrategy(), GetStrategiesForInstance() for button-based UI
-- Added support for area-based strategies[] format
 --]]
 
 local AceAddon = LibStub("AceAddon-3.0")
@@ -20,7 +14,7 @@ local AceAddon = LibStub("AceAddon-3.0")
 -- Create the DatabaseManager module
 local DatabaseManager = AceAddon:NewAddon("StrategyDatabaseManager", "AceEvent-3.0")
 
--- Local WoW API references for performance (Midnight-safe only)
+-- Local WoW API references for performance
 local GetZoneText = GetZoneText
 local GetInstanceInfo = GetInstanceInfo
 local IsInInstance = IsInInstance
@@ -32,9 +26,9 @@ local time = time
 function DatabaseManager:OnInitialize()
     -- Initialize tracking data
     self.CurrentInstanceData = {}      -- Current instance's strategy data
-    self.CurrentStrategies = {}        -- v2.0: strategies[] array for current instance
+    self.CurrentStrategies = {}        -- strategies[] array for current instance
     self.LoadedInstance = nil
-    self.LoadedInstanceID = nil        -- v2.0: numeric instance ID
+    self.LoadedInstanceID = nil        -- numeric instance ID
     self.outputTracker = {}            -- Track announced strategies
     
     -- Reference to main addon (will be set by Core.lua)
@@ -66,7 +60,7 @@ function DatabaseManager:IsInValidInstance()
     return inInstance and (instanceType == "party" or instanceType == "raid")
 end
 
--- Database Access (v2.0 - strategy-based)
+-- Database Access
 
 --[[
     Get strategy by ID from current instance
@@ -133,18 +127,9 @@ function DatabaseManager:GetStrategiesGrouped()
     return groups, groupOrder
 end
 
--- Legacy: Get boss data (v1.x compatibility)
+-- Legacy: Get boss data (Reserved for future use)
 function DatabaseManager:GetBossData(unitName)
-    -- MEDIUM FIX: Add initialization check
-    if not StrategyDatabase then
-        if self.addon then
-            self.addon:Debug("Database not yet initialized")
-        end
-        return nil
-    end
-    
-    -- Return data from current instance
-    return self.CurrentInstanceData[unitName]
+    return nil
 end
 
 function DatabaseManager:FindBossInAllInstances(bossName)
@@ -161,7 +146,7 @@ function DatabaseManager:FindBossInAllInstances(bossName)
     return nil
 end
 
--- Instance Loading System (v2.0 - supports both formats)
+-- Instance Loading System
 function DatabaseManager:LoadCurrentInstance()
     local currentZone = self:GetCurrentZone()
     if not currentZone then return end
@@ -191,46 +176,24 @@ function DatabaseManager:LoadCurrentInstance()
     end
     
     -- Load the data based on format version
+    -- Load strategies
     self.LoadedInstance = currentZone
     self.LoadedInstanceID = instanceData.instanceID
     
-    -- v2.0 format: strategies[] array
     if instanceData.strategies and #instanceData.strategies > 0 then
         self.CurrentStrategies = instanceData.strategies
-        self.CurrentInstanceData = {}  -- Legacy field empty for v2.0
         
         if self.addon then
-            self.addon:Debug("Loaded " .. #self.CurrentStrategies .. " strategies for " .. currentZone .. " (v2.0 format)")
-        end
-    -- v1.x format: encounters{} table (legacy compatibility)
-    elseif instanceData.encounters then
-        self.CurrentInstanceData = instanceData.encounters
-        self.CurrentStrategies = {}  -- No v2.0 strategies
-        
-        local encounterCount = 0
-        for _ in pairs(self.CurrentInstanceData) do
-            encounterCount = encounterCount + 1
-        end
-        
-        if self.addon then
-            self.addon:Debug("Loaded " .. encounterCount .. " encounters for " .. currentZone .. " (v1.x format)")
+            self.addon:Debug("Loaded " .. #self.CurrentStrategies .. " strategies for " .. currentZone)
         end
     else
         if self.addon then
-            self.addon:Debug("No strategies or encounters found for: " .. currentZone)
+            self.addon:Debug("No strategies found for: " .. currentZone)
         end
     end
 end
 
--- v1.x DEPRECATED: CheckAndOutputBoss
--- This function is removed in v2.0 because UnitName() returns secret values
--- in Midnight M+ and raids. Use StrategyPanel button clicks instead.
---[[
-function DatabaseManager:CheckAndOutputBoss(unit)
-    -- REMOVED: This functionality is blocked by Midnight API restrictions
-    -- Players now use the StrategyPanel to click buttons to announce strategies
-end
-]]
+-- Deprecated: CheckAndOutputBoss (Functionality removed)
 
 -- Testing Functions
 function DatabaseManager:TestRandomBoss()
@@ -290,21 +253,13 @@ function DatabaseManager:GetInstanceStatus()
         currentZone = self:GetCurrentZone(),
         loadedInstance = self.LoadedInstance,
         loadedInstanceID = self.LoadedInstanceID,
-        strategyCount = #self.CurrentStrategies,      -- v2.0 count
-        encounterCount = 0,                            -- v1.x count (legacy)
-        announcedCount = 0,
-        formatVersion = "unknown"
+        strategyCount = #self.CurrentStrategies,
+        announcedCount = 0
     }
     
-    -- Determine format version
+    -- Count strategies
     if self.CurrentStrategies and #self.CurrentStrategies > 0 then
-        status.formatVersion = "v2.0"
         status.strategyCount = #self.CurrentStrategies
-    elseif self.CurrentInstanceData and next(self.CurrentInstanceData) then
-        status.formatVersion = "v1.x"
-        for _ in pairs(self.CurrentInstanceData) do
-            status.encounterCount = status.encounterCount + 1
-        end
     end
     
     -- Count announced strategies

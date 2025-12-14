@@ -1,8 +1,8 @@
 ## Interface: 110200, 110205
 ## Title: Strategy
 ## Author: Jason Falk
-## Notes: Tank strategy assistant - click buttons or use keybinds to announce encounter strategies (Midnight-compatible)
-## Version: 2.0.0
+## Notes: Tank strategy assistant - click buttons or use keybinds to announce encounter strategies
+## Version: 0.1.0-alpha
 ## SavedVariables: StrategyDB
 ## OptionalDeps: Plater
 ## LoadOnDemand: 0
@@ -16,7 +16,7 @@ Core\InstanceDetector.lua
 Core\StrategyPanel.lua
 Core\KeybindManager.lua
 Core\Core.lua
-Database\TWW\Dungeon\operation-floodgate-v2.lua
+Database\TWW\Dungeon\operation-floodgate.lua
 Database\TWW\Dungeon\ara-kara.lua
 Database\TWW\Dungeon\dawnbreaker.lua
 Database\TWW\Dungeon\echo-dome.lua

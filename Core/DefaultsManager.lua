@@ -46,11 +46,11 @@ function DefaultsManager:GetDefaults()
             alwaysShowInterrupts = false,
             alwaysShowDispels = false,
             
-            -- v2.0 Strategy Panel settings
+            -- Strategy Panel settings
             autoShowStrategyPanel = true, -- Auto-show panel when entering dungeon
             autoHideStrategyPanel = true, -- Auto-hide panel when leaving dungeon
             
-            -- v2.0 Strategy Panel styling
+            -- Strategy Panel styling
             strategyPanel = {
                 -- Dimensions
                 width = 300,
@@ -341,7 +341,7 @@ function DefaultsManager:GetStrategyPanelOptions()
             },
             openPanel = {
                 name = "Open Strategy Panel",
-                desc = "Opens the v2.0 Strategy Panel",
+                desc = "Opens the Strategy Panel",
                 type = "execute",
                 order = 1,
                 func = function()

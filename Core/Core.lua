@@ -72,13 +72,13 @@ function Strategy:SlashCommand(input)
     local command, arg = self:GetArgs(input, 2)
     command = command and command:lower() or ""
     
-    -- v2.0: Check for numeric strategy announcements (1-10)
+    -- Check for numeric strategy announcements (1-10)
 
     
     if command == "" or command == "help" then
         self:Print("Strategy Commands:")
         self:Print("  |cff00ccff/strat settings|r - Open settings panel")
-        self:Print("  |cff00ccff/strat panel|r - Toggle strategy panel (v2.0)")
+        self:Print("  |cff00ccff/strat panel|r - Toggle strategy panel")
 
         self:Print("  |cff00ccff/strat diagnose|r - Show diagnostic info")
         self:Print("  |cff00ccff/strat enable|r - Enable the addon")
@@ -90,7 +90,7 @@ function Strategy:SlashCommand(input)
         self:OpenSettings()
     
     elseif command == "panel" then
-        -- v2.0: Toggle strategy panel
+        -- Toggle strategy panel
         if self.StrategyPanel then
             self.StrategyPanel:Toggle()
         else
@@ -101,7 +101,7 @@ function Strategy:SlashCommand(input)
         self:TestRandomBoss()
         
     elseif command == "diagnose" then
-        self:Print("=== STRATEGY v2.0 DIAGNOSTIC ===")
+        self:Print("=== STRATEGY DIAGNOSTIC ===")
         self:Print("1. Addon loaded: " .. tostring(self ~= nil))
         self:Print("2. Database loaded: " .. tostring(self.db ~= nil))
         
@@ -118,8 +118,8 @@ function Strategy:SlashCommand(input)
         self:Print("5. Core Modules: SE:" .. (self.StrategyEngine and "✓" or "✗") .. 
                    " DB:" .. (self.DatabaseManager and "✓" or "✗") .. 
                    " DM:" .. (self.DefaultsManager and "✓" or "✗"))
-        -- v2.0 Midnight-compatible modules
-        self:Print("6. v2.0 Modules: ID:" .. (self.InstanceDetector and "✓" or "✗") .. 
+        -- Feature modules
+        self:Print("6. Feature Modules: ID:" .. (self.InstanceDetector and "✓" or "✗") .. 
                    " SP:" .. (self.StrategyPanel and "✓" or "✗") .. 
                    " KB:" .. (self.KeybindManager and "✓" or "✗"))
         self:Print("7. LibStub version: " .. tostring(LibStub and LibStub.minor or "unknown"))
@@ -168,7 +168,7 @@ function Strategy:SlashCommand(input)
         self:Print("Strategy " .. status)
         
     elseif command == "reset" then
-        -- v2.0: Reset announced strategies
+        -- Reset announced strategies
         if self.DatabaseManager then
             self.DatabaseManager:ResetOutputTracker()
         end
@@ -280,7 +280,7 @@ end
 
 
 
--- v2.0: Strategy access (area-based, not boss-based)
+-- Strategy access (area-based, not boss-based)
 function Strategy:GetStrategy(strategyId)
     if self.DatabaseManager then
         return self.DatabaseManager:GetStrategy(strategyId)
@@ -326,7 +326,7 @@ function Strategy:OnInitialize()
         {name = "DefaultsManager", global = "StrategyDefaultsManager"},
         {name = "StrategyEngine", global = "StrategyEngine"},
         {name = "DatabaseManager", global = "StrategyDatabaseManager"},
-        -- v2.0 Midnight-compatible modules
+        -- Feature modules
         {name = "InstanceDetector", global = "StrategyInstanceDetector"},
         {name = "StrategyPanel", global = "StrategyPanel"},
         {name = "KeybindManager", global = "StrategyKeybindManager"}
@@ -383,7 +383,7 @@ function Strategy:OnInitialize()
     if self.DatabaseManager and self.DatabaseManager.SetAddon then
         self.DatabaseManager:SetAddon(self)
     end
-    -- v2.0 Midnight-compatible modules
+    -- Feature modules
     if self.InstanceDetector and self.InstanceDetector.SetAddon then
         self.InstanceDetector:SetAddon(self)
     end
@@ -423,17 +423,17 @@ function Strategy:OnEnable()
         self:Debug("Debug mode active")
     end
     
-    -- v2.0: Register InstanceDetector events (replaces target/mouseover handlers)
+    -- Register InstanceDetector events (replaces target/mouseover handlers)
     if self.InstanceDetector then
         self.InstanceDetector:RegisterEvents()
     end
     
-    -- v2.0: Register zone/combat events (but NOT target/mouseover - blocked in Midnight)
+    -- Register zone/combat events
     -- Note: UPDATE_MOUSEOVER_UNIT and PLAYER_TARGET_CHANGED removed for Midnight compatibility
     -- self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnd") -- REMOVED
     self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "OnZoneChanged")
     
-    self:Debug("Addon enabled successfully (v2.0 Midnight-compatible)")
+    self:Debug("Addon enabled successfully")
 end
 
 -- Event handlers
@@ -445,7 +445,7 @@ end
 function Strategy:OnZoneChanged()
     self:Debug("Zone changed - loading new instance data")
     
-    -- v2.0: InstanceDetector handles zone change detection
+    -- InstanceDetector handles zone change detection
     -- This is a backup handler for additional processing
     
     -- Clear announced strategies if setting enabled
