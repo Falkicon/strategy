@@ -8,7 +8,7 @@
 
 ## Overview
 
-**Strategy** is a World of Warcraft addon designed to help tanks and party leaders share concise, actionable encounter strategies in Mythic+ dungeons.
+**Strategy** is a World of Warcraft addon designed to help tanks and party leaders share concise, actionable encounter strategies in Mythic+ dungeons and raids.
 
 Instead of relying on complex auto-detection or target scanning, Strategy provides a clean **Strategy Panel** that automatically appears when you enter a supported instance. The panel lists every boss and critical trash pack in progression order.
 
@@ -19,10 +19,9 @@ Simply **click a button** to announce the strategy to your group.
 - **🏰 Automatic Detection**: Instantly loads the correct strategies when you enter a supported dungeon.
 - **📋 Strategy Panel**: A visual list of all encounters in the instance.
 - **⚡ One-Click Announce**: Click any button to output the strategy to chat.
-- **🛡️ Role-Specific Advice**: Strategies align `[T] Tank`, `[H] Healer`, `[D] DPS`, and `[!] Interrupt` notes.
-- **⌨️ Keybind Support**: Press `1-0` to announce strategies without clicking.
-- **🎨 Modern UI**: Clean, dark-themed interface that fits modern WoW aesthetics.
-- **🚫 Spam Prevention**: Buttons dim after use to help you track what you've announced.
+- **🛡️ Role-Specific Advice**: Strategies align `[TANK]`, `[HEAL]`, `[DPS]`, `[INT]`, and `[DISP]` notes.
+- **🎨 Modern UI**: Clean, dark-themed interface with a detailed side panel.
+- **🚫 Spam Prevention**: Strategies are announced button-by-button, with full control over what is sent.
 
 ## Installation
 
@@ -31,12 +30,13 @@ Simply **click a button** to announce the strategy to your group.
    `World of Warcraft\_retail_\Interface\AddOns\`
 3. Restart WoW.
 
-## getting Started
+## Getting Started
 
 1. **Enter a Dungeon**: The Strategy Panel will appear automatically.
-2. **Review**: Hover over any button to see the full strategy tooltip.
-3. **Announce**: Click the button (or use keybinds `1-9`) to send the strategy to instance chat.
-4. **Settings**: Type `/strat settings` to configure output channels, panel size, and more.
+2. **Select**: Click a boss or trash pack to open the **Detail Panel**.
+3. **Review**: Read the strategy yourself in the side panel.
+4. **Announce**: Click the "Announce" button to send it to chat.
+5. **Settings**: Type `/strat settings` to configure output channels, panel size, and more.
 
 ## Commands
 
@@ -45,10 +45,10 @@ Simply **click a button** to announce the strategy to your group.
 - `/strat reset` - Reset the "announced" status of all buttons.
 - `/strat help` - Show all available commands.
 
-## Supported Content (TWW Season 1)
+## Supported Content
 
-- **Operation: Floodgate**
-- *(More dungeons coming soon)*
+- **The War Within**: Full support for Season 3 Dungeons.
+- **Midnight**: Forward-compatible architecture ready for 12.0.
 
 ## Configuration
 
@@ -56,7 +56,7 @@ You can customize almost every aspect of the addon via `/strat settings`:
 
 - **Output Channel**: Choose between Instance, Party, Say, Whisper, or Self (for testing).
 - **Styling**: Adjust panel width, font sizes, opacity, and colors.
-- **Behavior**: Toggle auto-show/hide, trash mob inclusion, and keybinds.
+- **Behavior**: Toggle auto-show/hide.
 
 ## Contributing
 
