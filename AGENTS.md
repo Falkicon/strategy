@@ -5,21 +5,17 @@
 A dungeon/raid strategy addon for WoW that provides:
 
 - Pre-written strategies for boss encounters and trash pulls
-- Button-based strategy panel (v2.0) with keybind support (1-0 keys)
+- Button-based strategy panel with keybind support (1-0 keys)
 - Role-filtered strategy output (tank, healer, DPS, interrupt, all)
 - Multiple output channels (instance chat, party, say, whisper, self)
 - Per-instance strategy databases with group organization
 
 ## Constraints
 
-- Must work on Retail 11.2.7+ and Midnight 12.0+
+- Must work on Retail 11.0.2+
 - Uses Ace3 framework (AceAddon, AceDB, AceConfig, AceEvent)
 - Resilient to Midnight API restrictions (no mouseover/target detection in combat)
-- v2.0 architecture: manual trigger via keybinds, no automatic boss detection
-
-## Current status
-
-**Fully functional v2.0:**
+**Current Architecture:**
 
 - Strategy Panel with clickable strategy buttons
 - Keybind support (1-0 keys) for quick announcements
@@ -33,7 +29,7 @@ A dungeon/raid strategy addon for WoW that provides:
 
 ## Strategy addon conventions
 
-### Architecture (v2.0)
+### Architecture
 
 **Module structure:**
 
@@ -66,7 +62,7 @@ A dungeon/raid strategy addon for WoW that provides:
   - `announcedStrategies` – Tracking for which strategies have been announced
   - `strategyPanel` – UI styling settings (width, height, colors, fonts, etc.)
 
-### Strategy data format (v2.0)
+### Strategy data format
 
 Strategies are organized in instance files under `Database/TWW/Dungeon/`:
 
@@ -254,7 +250,7 @@ local name, instanceType, difficultyID, difficultyName,
 - Debug Mode (checkbox)
 - Zone Display (dropdown)
 
-**Strategy Panel (v2.0):**
+**Strategy Panel:**
 
 - Dimensions: Width, Min/Max Height
 - Spacing: Padding, Button Spacing

@@ -4,7 +4,7 @@
 
 World of Warcraft frequently changes its addon API between versions. This guide documents known compatibility issues and their solutions.
 
-> **Strategy 2.0**: This addon has been redesigned for Midnight (WoW 12.0) API compatibility. See the "Midnight API Restrictions" section for details on why we moved from target/mouseover detection to button-based announcements.
+> **Design Philosophy**: This addon is designed for forward compatibility with future WoW API restrictions (e.g. Midnight 12.0). It uses player-initiated button presses instead of target/mouseover auto-detection to ensure long-term stability in M+ and raids.
 
 ## Midnight (12.0) API Restrictions ⚠️
 
@@ -47,7 +47,7 @@ The Strategy addon's original use case (identify mob → show strategy) falls di
 
 ### Our Solution
 
-Strategy 2.0 uses a **button-based architecture** that doesn't require unit identification:
+Strategy uses a **button-based architecture** that doesn't require unit identification:
 
 1. **Instance Detection** via `GetInstanceInfo()` (always works)
 2. **Strategy Panel** shows all strategies for the current instance
