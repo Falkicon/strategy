@@ -1,4 +1,4 @@
-## Interface: 110007, 110100
+## Interface: 120000
 ## Title: Strategy
 ## Author: Jason Falk
 ## Notes: Tank strategy assistant - click buttons or use keybinds to announce encounter strategies
