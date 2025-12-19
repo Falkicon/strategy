@@ -1,11 +1,8 @@
--- LibStub is a simple versioning stub meant for use in Libraries.
--- http://www.wowace.com/addons/libstub/
--- 
--- LibStub developed for World of Warcraft by above members of the WowAce community.
---
--- LibStub is hereby placed in the Public Domain Credits: Kaelten, Cladhaire, ckknight, Mikk, Ammo, Nevcairiel, joshborke
-
-local LIBSTUB_MAJOR, LIBSTUB_MINOR = "LibStub", 4
+-- $Id: LibStub.lua 103 2014-10-16 03:02:50Z mikk $
+-- LibStub is a simple versioning stub meant for use in Libraries.  http://www.wowace.com/addons/libstub/ for more info
+-- LibStub is hereby placed in the Public Domain
+-- Credits: Kaelten, Cladhaire, ckknight, Mikk, Ammo, Nevcairiel, joshborke
+local LIBSTUB_MAJOR, LIBSTUB_MINOR = "LibStub", 2  -- NEVER MAKE THIS AN SVN REVISION! IT NEEDS TO BE USABLE IN ALL REPOS!
 local LibStub = _G[LIBSTUB_MAJOR]
 
 -- Check to see is this version of the stub is obsolete
@@ -33,21 +30,21 @@ if not LibStub or LibStub.minor < LIBSTUB_MINOR then
 	-- LibStub:GetLibrary(major, [silent])
 	-- major (string) - the major version of the library
 	-- silent (boolean) - if true, library is optional, silently return nil if its not found
-	-- 
+	--
 	-- throws an error if the library can not be found (except silent is set)
 	-- returns the library object if found
 	function LibStub:GetLibrary(major, silent)
 		if not self.libs[major] and not silent then
 			error(("Cannot find a library instance of %q."):format(tostring(major)), 2)
 		end
-		return self.libs[major]
+		return self.libs[major], self.minors[major]
 	end
 	
 	-- LibStub:IterateLibraries()
 	-- 
 	-- Returns an iterator for the currently registered libraries
-	function LibStub:IterateLibraries()
-		return pairs(self.libs)
+	function LibStub:IterateLibraries() 
+		return pairs(self.libs) 
 	end
 	
 	setmetatable(LibStub, { __call = LibStub.GetLibrary })

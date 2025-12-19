@@ -754,46 +754,33 @@ function DefaultsManager:InitializeDataBroker()
         return
     end
 
-    -- Only initialize if libraries are available
-    local LDB = LibStub("LibDataBroker-1.1", true)
-    local LibDBIcon = LibStub("LibDBIcon-1.0", true)
-    
-    if not LDB or not LibDBIcon then
-        self.addon:Debug("LibDataBroker or LibDBIcon not available - skipping minimap icon")
-        return
+    -- Register with Addon Compartment (Blizzard's dropdown menu)
+    if AddonCompartmentFrame and AddonCompartmentFrame.RegisterAddon then
+        AddonCompartmentFrame:RegisterAddon({
+            text = "Strategy",
+            icon = "Interface\\Icons\\Achievement_Boss_Kingymiron",
+            notCheckable = true,
+            func = function() self:OpenSettings() end,
+            funcOnEnter = function(button)
+                GameTooltip:SetOwner(button, "ANCHOR_LEFT")
+                GameTooltip:AddLine("Strategy")
+                GameTooltip:AddLine("Click to open settings", 0.8, 0.8, 0.8)
+                
+                if self.addon.DatabaseManager then
+                    local status = self.addon.DatabaseManager:GetInstanceStatus()
+                    if status.loadedInstance then
+                        GameTooltip:AddLine(" ")
+                        GameTooltip:AddLine("Current Instance: " .. status.loadedInstance, 1, 0.84, 0)
+                        GameTooltip:AddLine("Strategies Loaded: " .. (status.encounterCount or "?"), 1, 1, 1)
+                    end
+                end
+                
+                GameTooltip:Show()
+            end,
+            funcOnLeave = function() GameTooltip:Hide() end,
+        })
+        self.addon:Debug("AddonCompartmentFrame registered")
     end
-    
-    -- Create LibDataBroker object
-    self.addon.ldb = LDB:NewDataObject("Strategy", {
-        type = "launcher",
-        text = "Strategy",
-        icon = "Interface\\Icons\\Achievement_Boss_Kingymiron",
-        OnClick = function(clickedframe, button)
-            if button == "LeftButton" then
-                self:OpenSettings()
-            elseif button == "RightButton" then
-                self.addon:TestRandomBoss()
-            end
-        end,
-        OnTooltipShow = function(tooltip)
-            if not tooltip or not tooltip.AddLine then return end
-            tooltip:AddLine("Strategy")
-            tooltip:AddLine("|cffFFFFFFLeft-click|r to open settings", 0.2, 1, 0.2, 1)
-            tooltip:AddLine("|cffFFFFFFRight-click|r to test random boss", 0.2, 1, 0.2, 1)
-            
-            local status = self.addon.DatabaseManager:GetInstanceStatus()
-            if status.loadedInstance then
-                tooltip:AddLine(" ")
-                tooltip:AddLine("|cffFFD700Current Instance:|r " .. status.loadedInstance, 1, 1, 1, 1)
-                tooltip:AddLine("|cffFFD700Strategies Loaded:|r " .. status.encounterCount, 1, 1, 1, 1)
-            end
-        end,
-    })
-    
-    -- Create minimap icon
-    LibDBIcon:Register("Strategy", self.addon.ldb, self.addon.db.profile.minimap)
-    
-    self.addon:Debug("Data broker and minimap icon initialized")
 end
 
 -- Make the module globally accessible
