@@ -3,7 +3,7 @@
 A World of Warcraft addon designed to help tanks and party leaders share concise, actionable encounter strategies in Mythic+ dungeons and raids.
 
 ![WoW Version](https://img.shields.io/badge/WoW-11.0%2B-blue)
-![Interface](https://img.shields.io/badge/Interface-110002-green)
+![Interface](https://img.shields.io/badge/Interface-120001-green)
 [![GitHub](https://img.shields.io/badge/GitHub-Falkicon%2FStrategy-181717?logo=github)](https://github.com/Falkicon/Strategy)
 [![Sponsor](https://img.shields.io/badge/Sponsor-pink?logo=githubsponsors)](https://github.com/sponsors/Falkicon)
 
@@ -117,4 +117,4 @@ If you find Strategy useful, consider [sponsoring on GitHub](https://github.com/
 
 ## License
 
-MIT License – see [LICENSE](LICENSE) for details.
+GPL-3.0 License – see [LICENSE](LICENSE) for details.

@@ -1,9 +1,10 @@
-## Interface: 120000
+## Interface: 120001
 ## Title: Strategy
 ## Author: Jason Falk
 ## Notes: Tank strategy assistant - click buttons or use keybinds to announce encounter strategies
-## Version: 0.1.0-alpha
+## Version: 0.1.6-alpha
 ## SavedVariables: StrategyDB
+## X-License: GPL-3.0
 ## OptionalDeps: Plater
 ## LoadOnDemand: 0
 ## X-Conflict-Check: 1

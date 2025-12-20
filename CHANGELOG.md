@@ -4,6 +4,18 @@ All notable changes to the Strategy addon will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.6-alpha] - 2025-12-19
+
+### Added
+- **FenUI Library**: Embedded FenUI widget library for consistent UI components
+- **CurseForge Metadata**: Added `## X-License: GPL-3.0` to .toc file
+- **CurseForge Integration**: Added project ID and webhook info to AGENTS.md
+- **Cursor Ignore**: Added `.cursorignore` to reduce indexing overhead
+
+### Changed
+- **Documentation**: Consolidated shared documentation to central `ADDON_DEV/AGENTS.md`; trimmed addon-specific AGENTS.md
+- **Interface Version**: Updated to `120001` for Midnight
+
 ## [0.1.5-alpha] - 2025-12-14
 
 ### Added
